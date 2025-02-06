@@ -1,0 +1,2 @@
+OpenSea can quickly determine who owns an NFT by listening to the events and keeping track on their own database.
+If I were to create such a marketplace, I'd have a listener for these events that's polling every X seconds, or even a web-socket and then storing that information on my own database. Then, I'd read everything I need in order to populate my front-end from my database instead of on-chain.

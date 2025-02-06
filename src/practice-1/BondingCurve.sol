@@ -60,28 +60,23 @@ contract BondingCurve {
         balances[msg.sender] -= amount;
         totalSupply -= amount;
 
-        (bool ok, ) = payable(msg.sender).call{value: refund}("");
+        (bool ok,) = payable(msg.sender).call{value: refund}("");
 
         if (!ok) revert FailedToSendETH();
 
         emit TokenSold(msg.sender, amount);
     }
 
-    function _calculatePurchaseAmount(
-        uint256 amount
-    ) internal view returns (uint256) {
+    function _calculatePurchaseAmount(uint256 amount) internal view returns (uint256) {
         uint256 startPrice = INITIAL_PRICE + (PRICE_INCREMENT * totalSupply);
         uint256 endPrice = startPrice + (PRICE_INCREMENT * (amount - 1));
         return (amount * (startPrice + endPrice)) / 2;
     }
 
-    function _calculateSellAmount(
-        uint256 amount
-    ) internal view returns (uint256) {
+    function _calculateSellAmount(uint256 amount) internal view returns (uint256) {
         if (amount < 1 || amount > balances[msg.sender]) revert InvalidAmount();
 
-        uint256 startPrice = INITIAL_PRICE +
-            (PRICE_INCREMENT * (totalSupply - amount));
+        uint256 startPrice = INITIAL_PRICE + (PRICE_INCREMENT * (totalSupply - amount));
         uint256 endPrice = startPrice + (PRICE_INCREMENT * (amount - 1));
         return (amount * (startPrice + endPrice)) / 2;
     }

@@ -1,0 +1,2 @@
+Besides the examples listed in the reading material, a wrapped NFT token could be used for bridging across networks for example. It could also be used in a game, like the idea that I have where the tokens are "staked" while playing the game and cannot be transferred and the receipt represents the ownership.
+It can also be used to provide collateral in DeFi if the NFT has pricing oracles. It could also be used to represent fractional ownership of an NFT if the NFT is too expensive and people want to pool to buy it.
